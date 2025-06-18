@@ -1,0 +1,122 @@
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.card {
+    width: 120px;
+    height: 180px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0px;
+    border-radius: 15px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+
+.card.basic {
+    background-image: url('./assets/basic.png');
+}
+.card.medium {
+    background-image: url('./assets/medium.png');
+}
+.card.epic {
+   background-image: url('./assets/epic.png');
+}
+.card.legend {
+    background-image: url('./assets/legend.png');
+}
+.card.superLegend {
+   background-image: url('./assets/superlegend.png');
+}
+.card.megaLegend {
+    background-image: url('./assets/megalegend.png');
+}
+.card.mythic {
+   background-image: url('./assets/mythic.png');
+}
+.card.monochromatic {
+    background-image: url('./assets/monochromatic.png');
+}
+.card.emerald {
+   background-image: url('./assets/emerald.png');
+}
+.card.bonus {
+    background-image: url('./assets/bonuscard.png');
+}
+.card.bonus.bonus2 {
+     background-image: url('./assets/bonuscard2.png');
+}
+.card.bonus.bonus3 {
+     background-image: url('./assets/bonuscard3.png');
+}
+.card.bonus.bonus4 {
+     background-image: url('./assets/bonuscard4.png');
+}
+.card.bonus.bonus5 {
+     background-image: url('./assets/bonuscard5.png');
+}
+.card.bonus.bonus6 {
+     background-image: url('./assets/bonuscard6.png');
+}
+.card.bonus.bonus7 {
+     background-image: url('./assets/bonuscard7.png');
+}
+.card.worstCard {
+ background-image: url('./assets/worstcard.png');
+}
+.card.worstCard.worstCard2 {
+     background-image: url('./assets/worstcard2.png');
+}
+.card.worstCard.worstCard3 {
+     background-image: url('./assets/worstcard3.png');
+}
+.card.worstCard.worstCard4 {
+     background-image: url('./assets/worstcard4.png');
+}
+.card.worstCard.worstCard5 {
+     background-image: url('./assets/worstcard5.png');
+}
+.card.worstCard.worstCard6 {
+     background-image: url('./assets/worstcard6.png');
+}
+.card.empty {
+     background-image: url('./assets/cardsback.png') !important;
+}
+.user {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+}
+.cards-count {
+     font-size: 20px;
+     color: orange;
+}
+.users {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+.users .user {
+    width: 150px;
+    height: 100px;
+}
+.step {
+     width: 100px;
+     height: 40px;
+     background: red;
+     color: white;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     border: 0;
+     border-radius: 10px;
+     margin: 20px auto;
+     cursor: pointer;
+}
