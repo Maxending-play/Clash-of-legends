@@ -165,7 +165,6 @@ const currentStatus = {
 function nextUser() {
     const currentUserIndex = users.findIndex(x=> x === currentStatus.currentUser);
     const nextUserIndex = currentUserIndex + 1 <= users.length - 1 ? currentUserIndex + 1 : 0;
-    console.log(nextUserIndex);
     return users[nextUserIndex];
 }
 function shuffle(array) {
@@ -226,11 +225,7 @@ function updateCards() {
     });
 }
 
-function init() {
-    updateCards();
-    updateUsers();
-    updateStatus();
-}
+
 
 
 function finish() {
@@ -246,7 +241,7 @@ function finish() {
     if (tie) {
         alert('Ничья ' + winner.name + ' и ' + tie.name)
     } else {
-         alert('Выиграл ' + winner.name)
+        alert('Выиграл ' + winner.name)
     }
     currentStatus.finishStatus = true;
    
@@ -442,7 +437,11 @@ stepButton.addEventListener("click", (e) => {
     e.preventDefault();
     step();
 })
-
+function init() {
+    updateCards();
+    updateUsers();
+    updateStatus();
+}
 function start() {
     step();
 }
