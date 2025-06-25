@@ -120,36 +120,42 @@ const cardsObj = {
     },
 }
 
-const users = [
+let users = [
     {
         name: 'user1',
         cards: [  ],
-        count: 0
+        count: 0,
+        skipNextMove: false,
     },
     {
         name: 'user2',
         cards:   [  ],
-        count: 0
+        count: 0,
+        skipNextMove: false,
     },
     {
         name: 'user3',
         cards:   [  ],
-        count: 0
+        count: 0,
+        skipNextMove: false,
     },
     {
         name: 'user4',
         cards:   [  ],
-        count: 0
+        count: 0,
+        skipNextMove: false,
     },
     {
         name: 'user5',
         cards:   [  ],
-        count: 0
+        count: 0,
+        skipNextMove: false,
     },
     {
         name: 'user6',
         cards:  [  ],
-        count: 0
+        count: 0,
+        skipNextMove: false,
     }
 ]
 
@@ -172,15 +178,15 @@ function shuffle(array) {
 }
 
 function updateStatus() {
-    currentStatus.currentUser = nextUser();
     const statusElement = document.querySelector('.status');
     statusElement.innerHTML = '';
     const userElement = document.createElement('div');
     userElement.classList.add('status');
     userElement.innerHTML = `
-        Cейчас ходит: ${currentStatus.currentUser.name}
+        Cейчас походил: ${currentStatus.currentUser.name}
     `;
     statusElement.appendChild(userElement);
+    currentStatus.currentUser = nextUser();
 }
 function updateUsers() {
     const usersElement = document.querySelector('.users');
@@ -258,189 +264,183 @@ function step() {
     if (currentStatus.finishStatus) {
         return;
     }
-    users.forEach((user, index) => {
-        if (startCards.length === 0) {
-            return;
-        }
-        const card = nextCard();
-        if(card) {
-            card.user = user;
-            card.flipped = true;
-        }
-     
-        user.count += cardsObj[card.type].ballForOne;
-        user.cards.push(card);
-
-       // user.count += cardsObj[card.type].ballForOne;
-
-        if (card.additionalClass) {
-            const nextUser = index + 1;
-
-            switch (card.additionalClass) {
-                case "bonus1": 
-                    let firstCard = user.cards.shift();
-                    let nextUserCard;
-                     if (users[nextUser]) {
-                        nextUserCard = users[index + 1].cards.shift();
-                        users[index + 1].cards.push(firstCard)
-                    } else {
-                        nextUserCard = users[0].cards.shift();
-                        users[0].cards.push(firstCard)
-                    }
-                    user.cards.push(nextUserCard);
-                    console.log('bonus1');
-                    break;
-                case "bonus2": 
-                    const card1 = nextCard();
-                    // TODO: 
-                    card1.user = user;
-                    card1.flipped = true;
-                    user.cards.push(card1);
-
-                    const card2 = nextCard();
-                    // TODO: 
-                    card2.user = user;
-                    card2.flipped = true;
-                    user.cards.push(card2);
-
-
-                     console.log('bonus2');
-                    break;
-                case "bonus3": 
-                    if (users[nextUser]) {
-                         users[index + 1].cards.shift();
-                    } else {
-                        users[0].cards.shift();
-                    }
-                     console.log('bonus3');
-                    break;
-                case "bonus4": 
-                    const flipCard = startCards[startCards.length - 1];
-                    flipCard.flipped = true;
-                    setTimeout((card) => {
-                        findCardToogle(card, "flipped");
-                         findCardToogle(card, "empty");
-                    }, 3000, flipCard)
-                    console.log('Bonus4')
-                    break;
-                case "bonus5":
-                    const card3 = startCards[0];
-                    card3.user = user;
-                    card3.flipped = true;
-
-                    user.cards.push(card3);
-                    console.log('bonus5');
-                    break;
-                case "bonus6": 
-                    let firstCard1 = user.cards.shift();
-                    let secondCard1 = user.cards.shift();
-                    let nextUserCard1;
-                    let nextUserCard2;
-                     if (users[nextUser]) {
-                        nextUserCard1 = users[index + 1].cards.shift();
-                        nextUserCard2 = users[index + 1].cards.shift();
-                        users[index + 1].cards.push(firstCard1)
-                        users[index + 1].cards.push(secondCard1)
-                    } else {
-                        nextUserCard1 = users[0].cards.shift();
-                         nextUserCard2 = users[0].cards.shift();
-                        users[0].cards.push(firstCard1)
-                         users[0].cards.push(secondCard1)
-                    }
-                    user.cards.push(nextUserCard1);
-                    user.cards.push(nextUserCard2);
-                    console.log('bonus6');
-                    break;
-                case "bonus7":
-                     if (users[nextUser]) {
-                        let bonus7 = users[index + 1].cards.shift();
-                         user.cards.push(bonus7);
-                     } else {
-                        let bonus7 = users[0].cards.shift();
-                        user.cards.push(bonus7);
-                     }
-                     console.log('bonus7');
-                    break;
-                case "worstCard1":
-                    const medium = [];
-                    user.cards.forEach((card, index) => {
-                        if (card.type === 'medium') {
-                            medium.push(card);
-                            user.cards.splice(index, 1);
-                        }
-                    });
-                     if (users[nextUser]) {
-                        users[nextUser].cards.push(...medium)   
-                    } else {
-                        users[0].cards.push(...medium)      
-                    }
-                    console.log('worstCard1');
-                    break;
-                case "worstCard2":
-                    const epic = [];
-                    user.cards.forEach((card, index) => {
-                        if (card.type === 'epic' && epic.length === 0) {
-                            epic.push(card);
-                            user.cards.splice(index, 1);
-                        }
-                    });
-                    console.log('worstCard2');
-                    break;
-                case "worstCard3":
-                    const legend = [];
-                    user.cards.forEach((card, index) => {
-                        if (card.type === 'legend' && legend.length < 2) {
-                            legend.push(card);
-                            user.cards.splice(index, 1);
-                        }
-                    });
-                    console.log('worstCard3');
-                    break;
-                case "worstCard4":
-                    break;
-                case "worstCard5":
-                    break;
-                case "worstCard6":
-                    const legend1 = [];
-                    user.cards.forEach((card, index) => {
-                        if (card.type === 'legend' && legend1.length === 0) {
-                            legend1.push(card);
-                            user.cards.splice(index, 1);
-                        }
-                    });
-                     if (users[nextUser]) {
-                        users[nextUser].cards.push(legend1)   
-                    } else {
-                        users[0].cards.push(legend1)      
-                    }
-                    console.log('worstCard6');
-                    break;
-
-
-            }
-        }
-        // Если bonus +  карты
-        // Если Worst - lose one epic card - в отбой
-        //
-
-    })
-    updateCards();
-    updateUsers();
-    updateStatus();
-
-    
-   if(startCards.length === 0 || startCards.length < users.length) {
+   const allCardFlipped = startCards.every(x=> x.flipped === true)
+   if(allCardFlipped) {
        finish();
+       return;
    }
+    const user = currentStatus.currentUser;
+    console.log(user.name);
+    if (user.skipNextMove) {
+        console.log(user.name);
+        console.log('Skip move');
+        user.skipNextMove = false;
+        
+        updateCards();
+        updateStatus();
+        updateUsers();
+        return;
+    }
+    const card = nextCard();
+    if(card) {
+        card.user = user;
+        card.flipped = true;
+    }
+    
+    user.count += cardsObj[card.type].ballForOne;
+    user.cards.push(card);
+
+    if (card.additionalClass) {
+        const followUser = nextUser();
+
+        switch (card.additionalClass) {
+            case "bonus1": 
+                let firstCard = user.cards.shift();
+                let nextUserCard =  followUser.cards.shift();
+                followUser.cards.push(firstCard);
+                user.cards.push(nextUserCard);
+                console.log('bonus1');
+                break;
+            case "bonus2": 
+                const card1 = nextCard();
+                card1.user = user;
+                card1.flipped = true;
+                user.cards.push(card1);
+
+                const card2 = nextCard();
+                card2.user = user;
+                card2.flipped = true;
+                user.cards.push(card2);
+                console.log('bonus2');
+                break;
+            case "bonus3": 
+                followUser.cards.shift();
+                    console.log('bonus3');
+                break;
+            case "bonus4": 
+                const flipCard = startCards[startCards.length - 1];
+                flipCard.flipped = true;
+                setTimeout((card) => {
+                    findCardToogle(card, "flipped");
+                        findCardToogle(card, "empty");
+                }, 3000, flipCard)
+                console.log('Bonus4')
+                break;
+            case "bonus5":
+                const card3 = startCards[0];
+                card3.user = user;
+                card3.flipped = true;
+
+                user.cards.push(card3);
+                console.log('bonus5');
+                break;
+            case "bonus6": 
+                let firstCard1 = user.cards.shift();
+                let secondCard1 = user.cards.shift();
+                let nextUserCard1 = followUser.cards.shift();
+                let nextUserCard2 = followUser.cards.shift();
+                followUser.cards.push(firstCard1);
+                followUser.cards.push(secondCard1);
+                user.cards.push(nextUserCard1);
+                user.cards.push(nextUserCard2);
+                console.log('follow ', followUser.name);
+                console.log('current ', user.name)
+                console.log('bonus6');
+                break;
+            case "bonus7":
+                let bonus7 = followUser.cards.shift();
+                user.cards.push(bonus7);
+
+                    console.log('bonus7');
+                break;
+            case "worstCard1":
+                const medium = [];
+                user.cards.forEach((card, index) => {
+                    if (card.type === 'medium') {
+                        medium.push(card);
+                        user.cards.splice(index, 1);
+                    }
+                });
+                followUser.cards.push(...medium);
+
+                console.log('worstCard1');
+                break;
+            case "worstCard2":
+                const epic = [];
+                user.cards.forEach((card, index) => {
+                    if (card.type === 'epic' && epic.length === 0) {
+                        epic.push(card);
+                        user.cards.splice(index, 1);
+                    }
+                });
+                console.log('worstCard2');
+                break;
+            case "worstCard3":
+                const legend = [];
+                user.cards.forEach((card, index) => {
+                    if (card.type === 'legend' && legend.length < 2) {
+                        legend.push(card);
+                        user.cards.splice(index, 1);
+                    }
+                });
+                console.log('worstCard3');
+                break;
+            case "worstCard4":
+                 console.log(user.name);
+                 console.log('worst card 4')
+                user.skipNextMove = true;
+                break;
+            case "worstCard5":
+                break;
+            case "worstCard6":
+                const legend1 = [];
+                user.cards.forEach((card, index) => {
+                    if (card.type === 'legend' && legend1.length === 0) {
+                        legend1.push(card);
+                        user.cards.splice(index, 1);
+                    }
+                });
+                followUser.cards.push(legend1);
+                console.log('worstCard6');
+                break;
+
+
+        }
+    }
+
+    updateCards();
+    updateStatus();
+    updateUsers();
+
+
+
+
+
 }
 stepButton.addEventListener("click", (e) => {
     e.preventDefault();
     step();
 })
 function init() {
-    updateCards();
-    updateUsers();
-    updateStatus();
+   
+    const userCount = +prompt("Сколько игроков будет играть?");
+    if (userCount >= 2 && userCount <= 6) {
+        const usersNames = prompt("Введите имена игроков через запятую").split(",");
+        let usersList = [];
+        for (let i = 0; i <= userCount - 1;i++) {
+            usersList.push({
+                name: usersNames[i],
+                skipNextMove: false,
+                cards: [],
+                count: 0
+            })
+        }
+        users = usersList;
+         currentStatus.currentUser = users[0];
+    } else {
+        alert("Кол-во игроков должно быть от 2 до 6");
+        init();
+    }
 }
 function start() {
     step();

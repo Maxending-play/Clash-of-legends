@@ -1,7 +1,31 @@
+body {
+     background-image: url('./assets/back.png');
+     background-repeat: repeat;
+}
+.result-table {
+     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.users {
+    background-image: url('./assets/goldframe.png');
+    background-repeat: no-repeat;
+    background-size: 100% 105px;
+    background-position: center;
+    padding: 0 20px;
+}
 .list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    max-width: 80%;
+    margin: 0 auto;
+    background-image:  url('./assets/wood.png'), url('./assets/greenwood.png');
+     background-repeat: no-repeat, repeat;
+     background-size: 1450px 850px, 100%;
+     background-position: center;
+    padding: 40px;
+    border-radius: 40px;
 }
 .card {
     width: 120px;
@@ -89,11 +113,13 @@
 .user {
      display: flex;
      flex-direction: column;
-     gap: 10px;
+     align-items: center;
+    gap: 5px;
+    justify-content: center;
 }
 .cards-count {
      font-size: 20px;
-     color: orange;
+     color: rgb(107, 12, 107);
 }
 .users {
     display: flex;
@@ -101,6 +127,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 40px;
+    color: rgb(99, 43, 34)
 }
 .users .user {
     width: 150px;
