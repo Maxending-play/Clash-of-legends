@@ -146,3 +146,98 @@ body {
      margin: 20px auto;
      cursor: pointer;
 }
+
+.user-count {
+     background-image: url('./assets/style2bdro.png');
+     background-size: 100% 100%;
+     background-repeat: no-repeat;
+     width: 200px;
+     margin-bottom: 20px;
+     padding: 20px;
+}
+.user-count p {
+     background-image: url('./assets/style1p1.png');
+     background-size: contain;
+     background-repeat: no-repeat;
+     padding: 20px;
+}
+.user-count input {
+     background-image: url('./assets/style1p2.png');
+     background-size: contain;
+     background-repeat: no-repeat;
+     padding: 10px;
+     background-color: transparent;
+     border: 0;
+     outline: 0;
+     color: white;
+}
+.user-count_buttons {
+     display: flex;
+     margin-top: 20px;
+     flex-direction: row;
+     gap: 20px;
+}
+.user-count_buttons-submit {
+     background-image: url('./assets/style1p3.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: 0;
+    padding: 10px 10px;
+    cursor: pointer;
+
+}
+.user-count_buttons-cancel {
+     background-image: url('./assets/style1p4.png');
+     background-size: 100% 100%;
+     background-repeat: no-repeat;
+     border: 0;
+     padding: 10px 10px;
+     cursor: pointer;
+}
+.user-name {
+     background-image: url('./assets/style2bdro.png');
+     background-size: 100% 100%;
+     background-repeat: no-repeat;
+     width: 200px;
+     margin-bottom: 20px;
+     padding: 20px;
+}
+.user-name p {
+     background-image: url('./assets/style2p1.png');
+     background-size: contain;
+     background-repeat: no-repeat;
+     padding: 20px;
+}
+.user-name input {
+     background-image: url('./assets/style2p2.png');
+     background-size: contain;
+     background-repeat: no-repeat;
+     padding: 10px;
+     background-color: transparent;
+     border: 0;
+     outline: 0;
+     color: white;
+}
+.user-name_buttons {
+     display: flex;
+     margin-top: 20px;
+     flex-direction: row;
+     gap: 20px;
+}
+.user-name_buttons-submit {
+     background-image: url('./assets/style2p3.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: 0;
+    padding: 10px 10px;
+    cursor: pointer;
+
+}
+.user-name_buttons-cancel {
+     background-image: url('./assets/style2p4.png');
+     background-size: 100% 100%;
+     background-repeat: no-repeat;
+     border: 0;
+     padding: 10px 10px;
+     cursor: pointer;
+}

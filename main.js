@@ -177,6 +177,7 @@ function shuffle(array) {
    return  array.sort(() => Math.random() - 0.5);
 }
 
+
 function updateStatus() {
     const statusElement = document.querySelector('.status');
     statusElement.innerHTML = '';
@@ -196,7 +197,6 @@ function updateUsers() {
         userElement.classList.add('user');
         userElement.innerHTML = `
             <div class="name">${user.name}</div>
-            <div class="cards-count"><span>Кол-во карт:</span>${user.cards.length}</div>
             <div class="count"><span>Текущий счет:</span>${user.count}</div>`
         ;
         usersElement.appendChild(userElement);
