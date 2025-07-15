@@ -421,29 +421,42 @@ stepButton.addEventListener("click", (e) => {
     e.preventDefault();
     step();
 })
+function start() {
+    step();
+}
 function init() {
    
-    const userCount = +prompt("Сколько игроков будет играть?");
-    if (userCount >= 2 && userCount <= 6) {
-        const usersNames = prompt("Введите имена игроков через запятую").split(",");
+    const startButton = document.getElementById("start-game");
+    startButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const userCount = document.getElementById('user-count-input');
+        const userCountValue = +userCount.value;
+        const userName = document.getElementById('user-name-input');
+        const userNameValue = userName.value.split(",")
+
         let usersList = [];
-        for (let i = 0; i <= userCount - 1;i++) {
+        for (let i = 0; i <= userCountValue - 1;i++) {
             usersList.push({
-                name: usersNames[i],
+                name: userNameValue[i],
                 skipNextMove: false,
                 cards: [],
                 count: 0
             })
         }
         users = usersList;
-         currentStatus.currentUser = users[0];
-    } else {
-        alert("Кол-во игроков должно быть от 2 до 6");
-        init();
-    }
+        currentStatus.currentUser = users[0];
+        start();
+
+        const startBlock = document.getElementById("start-game-block");
+        startBlock.classList.toggle("active");
+
+        const gameContinue = document.getElementById("game-continue");
+        gameContinue.classList.toggle("active");
+
+
+    })
 }
-function start() {
-    step();
-}
+
 init();
-start();
+

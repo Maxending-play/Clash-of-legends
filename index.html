@@ -9,29 +9,42 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="user-count" id="user-count">
-        <p>Write players number:</p>
-        <input type="number" name="" id="">
-        <div class="user-count_buttons">
-            <button type="submit" class="user-count_buttons-submit">Подтвердить</button>
-            <button type="reset" class="user-count_buttons-cancel">Отмена</button>
+    <form class="start-game active" id="start-game-block">
+        <div class="user-count" id="user-count">
+            <p>Write players number:</p>
+            <input type="number" name="" min="2" max="6" id="user-count-input">
+            <div class="user-count_buttons">
+                <button type="button" class="user-count_buttons-submit">Подтвердить</button>
+                <button type="reset" class="user-count_buttons-cancel">Отмена</button>
+            </div>
+        </div>
+        <div class="user-name" id="user-name">
+            <p>Write players names:</p>
+            <input type="text" name="" id="user-name-input">
+            <div class="user-name_buttons">
+                <button type="button" class="user-name_buttons-submit">Подтвердить</button>
+                <button type="reset" class="user-name_buttons-cancel">Отмена</button>
+            </div>
+        </div>
+        <button type="submit" class="start-game_button" id="start-game">Start game</button>
+    </form>
+
+    <div class="game-continue" id="game-continue">
+        <div class="status" id="status"></div>
+        <div class="result-table">
+            <div class="users" id="users"></div>
+        </div>
+    
+        <button class="step" id="step">Step</button>
+        <div class="list" id="list"></div>
+
+        <div class="user-status">
+            <div class="user-status_card-count"></div>
+            <div class="user-status_user-name"></div>
+            <div class="user-status_user-cards"></div>
         </div>
     </div>
-    <div class="user-name" id="user-name">
-        <p>Write players names:</p>
-        <input type="text" name="" id="">
-        <div class="user-name_buttons">
-            <button type="submit" class="user-name_buttons-submit">Подтвердить</button>
-            <button type="reset" class="user-name_buttons-cancel">Отмена</button>
-        </div>
-    </div>
-    <div class="status" id="status"></div>
-    <div class="result-table">
-        <div class="users" id="users"></div>
-    </div>
-   
-    <button class="step" id="step">Step</button>
-    <div class="list" id="list"></div>
+
 
 <script src="./main.js"></script>
 </body>
